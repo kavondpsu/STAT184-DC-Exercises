@@ -1,0 +1,97 @@
+---
+title: "Chapters 3&4"
+author: "Kavond Jones"
+output: html_notebook
+---
+
+## Assigned Excersices 
+- Chapter 3: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 
+- Chapter 4: 4.1, 4.2, 4.3 
+
+# Chapter 3 
+## 3.1 - fireplace 
+- data frame ... Fireplace 
+- function ... fireplace()
+- name of named argument ... function(x = fireplace)
+- variable ... fireplace 
+
+## 3.2 - "Result <- %>% filter (BaybyNames, name =="Prince")"
+- This statement is illegitimate due to the data frame being inside the argument and not after the assignment operator and before the chaining operator. 
+
+## 3.3 - Assigning object categories 
+- BabyNames ... data table 
+- filter ... function 
+- name... variable name, name of named argument  
+- == ... name of named argument 
+- group_by ... function 
+- year ... variable, named of named argument 
+- sex ... variable, name of named argument 
+- summarise ... function 
+- sum ... function 
+- count ... function
+- ggplot... function 
+- aes ... variable, name of a named argument 
+- x ...variable
+- y ... variable 
+- geom_point ... function
+- color ... name of named argument 
+- geom_vline ... function 
+- xintercept ... name of named intercept 
+
+## 3.4 - ggplot2 package 
+- Brain weight in kilograms 
+- 83 Cases 
+- Different types of mammals 
+- Carnivore, omnivore, Herbivore
+
+## 3.5 - 4 data verb functions 
+- C is calculating the mean(average) of the counts by the years instead of the sum of the total births. 
+
+## 3.6 - date() function 
+1. date function takes no arguments. Just returns the date.  
+2. date function returns a string that displays the current date and time. 
+
+# Chapter 4 
+## 4.1 - Markdown co
+- *one* ... italics 
+- **two** ... bold 
+- * three ... bullet 
+- # Four ... heading 1 
+- five ... regular monospace text
+- ## six ... heading 2 
+- [seven](http://tiny.cc/dcf/index.html) ... link to website 
+
+## 4.2 - Five chunks , whats wrong with each?
+1. Chunk uses apostrophe instead of back-tick. 
+2. Chunk uses double quote marks instead of back-ticks.
+3. Chunk only uses 2 back-ticks.
+4. Fences must be on different lines instead of the same one. 
+5. Closing line has too many back-ticks.
+
+## 4.3 - .Rmd to html 
+### An Introduction 
+Arithmetic is *easy*! For instance 
+```{r}
+3+2 
+```
+
+## 4.4 - 6 short list names 
+1. datacomputing.org ... URL 
+2. ahab/whale.Rmd ... file 
+3. ptth://world-bank.org ... neither 
+4. http://world-bank.org ... URL
+5. //world-bank.org/index.html ... neither 
+6. world-bank.org/index.html ... both 
+
+## 4.5 - Filename extensions 
+1. .csv ... D
+2. .Rmd ... C
+3. .jpg ... B 
+4. .Rdata ... D 
+5. .doxc ... A 
+6. .html ... E
+7. .ppt ... A 
+8. .png ... B 
+9. .txt ... E 
+10. .xlsx ... D 
+
