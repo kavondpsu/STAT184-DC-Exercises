@@ -1,0 +1,109 @@
+---
+title: "Chapters1&2"
+author: "Kavond Jones"
+output: html_notebook
+---
+
+## Assigned Exercises 
+- Chapter 1: 1.1, 1.2, 1.3, 1.4, 1.5 
+- Chapter 2: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9 
+
+## Front Matter
+```{r}
+rm(list = ls())
+
+library(mosaic)
+library(tidyverse)
+```
+
+# Chapter 1 
+## 1.1 - Categorical, Quantittative, or Value of a Variable for a particular case ?
+a. Taffy = value for particular case   
+b. Year = quantitative 
+c. Sex = categorical 
+d. name = categorical 
+e. count = quantitative 
+
+## 1.2 - Whats not tidy about this table? 
+ - This table is untidy for multiple reason. One being because the "number of states" for Abraham Lincoln is entered in as "it depends" which does not match the rest fo the inputs in the column. Another is the labeling of the columns/ table. Number of states is a very open ended variable and should be made more specific like "Number of States Won." Additionally, some syntax errors make the inputs inconsistent with each other. Also the years aren't in order. 
+```{r, layout="l-body-outset"}
+library(knitr)
+# kable(head(`Presidents and Number of States When In Office`))
+```
+
+## 1.3 - 3 Different Tables, same data.
+1. A) Variables are the countries. B) Variables are years 2000 and 2001. C) Varibles are each case the year avaue of the countries. 
+2. A) A Country 
+   B) A year
+   C) A country in a year
+
+## 1.4 - Nycflights13/ Airports Data Table. 
+1. There are 13 different variables. 
+2. Cases Represent the Airport Unique IDs.
+3. Name is Categorical, City is Categorical, City is Categorical, Country is categorical, IATA is categorical, ICAO is categorical, Lat is numerical, Long is numerical, Altitude is numerical, Timezone is categorical, DST is categorical, Tz database time zone is categorical, Type is categorical, Source is categorical. 
+
+## 1.5 - 10-Mile race data. 
+1. Sex, age, and gun time are not part of the row-cases for the table because some of these variables can be repeated and is not unique to the case. 
+2. The unqiue number that the different Jane's wore should be used to help distinguish the two. 
+
+
+# Chapter 2
+## 2.1 
+```{r}
+WorldPhones %>% head(5)
+
+```
+WorldPhones acts as a data table and a package, head works as a function to show the initial cases, 5 is a value that i inserted to show the first 5 of the data.
+
+## 2.2 - Which names should be wrapped in quotes? 
+1. No kinds of functions can be in quotation marks .
+2. File names that are being loaded into r studio should be in quote marks. Also to identify files outside of R.
+3. If the name of the argument is a string of some sort, then it should be in quotes. 
+4. Objects are never in quotes. 
+
+## 2.3 - CPS85 
+The meaning of CPS is "Current Population Survey." 
+
+##2.4 - Four similar help() statements
+1. Option B would be most aligned with the syntax that is used in this chapter.
+2. Option C produces an error message because it put the wrong or of arguments. 
+3. For option A, although it goes against the general syntax it does still work. R sees the database it needs and where to get it from. For option D, as long as, within the help function( or any), the name argument and the database is in the correct syntax, the function will still work.
+
+## 2.5 - Library()
+1. Another function listed under the "Usage" is the "require."
+2. Under "See Also", the function that is listed after "detach" is "search."
+
+## 2.6 - What names are legitimate names for Objects.
+1. essay14 ... Legit 
+2. first-essay ... Not legit, dash is not acceptable. 
+3. "MyData" ... Not legit, quotes not acceptable. 
+4. third_essay ... Legit. 
+5. small sample ... cant use space in object names. 
+6. functionList ... legit. 
+7. FuNcTiOnLiSt ... legit. 
+8. .MyData ... legit. 
+9. sqrt() ... not legit. this is a function.  
+
+## 2.7 - Nyfflights13/flights 
+1. There are 19 variables. 
+2. There are 336,776 cases. 
+3. Each cases is a flight that departed from NYC. 
+4.In order as they appear on the table: categorical, categorical, categorical, numerical, numerical, numerical, categorical, categorical, categorical, categorical, categorical, categorical, numerical, numerical, numerical, numerical numerical. 
+5. Air_time is measured in minutes, and Distance is measured in miles. 
+
+## 2.8 - List the mistakes of the assignment operation. 
+1. C. Improper syntax for function argument.
+2. No assignment operator 
+3. D. Invalid object name.
+4. B. Unmatched quotes 
+5. E. No mistake 
+
+## 2.9 - .,;_-^[space]()
+1. Only the .(period) and the _(underscore) can be use in the name of a R object. 
+2. All of these charaters can be used in a quoted character string. 
+
+## 2.10 - Loading different datasets to answer questions. 
+1. 76 Variables 
+2. in the NCHS table, "tfat" measures the mass of trunk fat. 
+3. In the WorldCities table, there are 23,018 cases. 
+4. The third variable in BabyNames is the year of birth. 
