@@ -1,0 +1,18 @@
+---
+title: "DC Exercises Chapter 11"
+output: html_notebook
+---
+
+## Assigned Exercises 
+- 11.2, 11.3, 11.5, 11.6
+
+
+## 11.2
+- The two tables cannot be combined for a join statement because the two tables have dont have the same number of entries. The first table has 256 rows while the other has only 241 which would make matching up the two tables, side by side, difficult. 
+
+## 11.3 
+1. 
+```{r}
+
+```
+
