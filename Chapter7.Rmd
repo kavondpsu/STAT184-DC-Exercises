@@ -1,0 +1,197 @@
+---
+title: "Chapter 7"
+author: "Kavond Jones"
+output: html_notebook
+---
+
+## Assigned Exercises 
+- Chapter 7: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.8 
+
+# Required Packages 
+```{r}
+rm(list = ls())
+library(mosaicData)
+library(mosaic)
+library(tidyverse)
+library(dcData)
+```
+
+# Chapter 7
+## 7.1 - Transformation or reduction
+1. Reduction
+2. Neither 
+3. Reduction 
+4. Transformation
+5. Transformation 
+6. Reduction 
+7. Transformation 
+8. Reduction 
+
+## 7.2 - Statements with Error 
+a. Group baby names by "First" and summarise by the total votes each received. Error: There was no object assigned before calling the dataframe. 
+b. Group the dataframe by year and sex and give a summary of the total births by years and sex. Error: the BabyNames dataframe was never called and was used in the argument for the group_by function. 
+c. Group the names in BabyNames by year and sex and then sum of the births. Error: object 'BabyNames' not found 
+
+## 7.3 - Minneapolis2013
+1. 80101 Cases
+```{r}
+glimpse(dcData::Minneapolis2013)
+```
+2. 
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  head(5)
+```
+3. 
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(count = n()) %>%
+  filter(First == "undervote")
+```
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(count = n()) %>%
+  filter(Second == "undervote")
+```
+```{r}
+Minneapolis2013 %>%
+  group_by(Third) %>%
+  summarise(count = n()) %>%
+  filter(Third == "undervote")
+```
+4. 
+```{r}
+Minneapolis2013 %>%
+  group_by(First, Second) %>%
+  summarise( count= n()) %>%
+  arrange(desc(count)) %>%
+  head(3)
+```
+5. 
+```{r}
+Minneapolis2013 %>%
+  group_by(Precinct) %>%
+  summarise(count = n()) %>% 
+  arrange(desc(count)) %>%
+  head(1)
+```
+## 7.4 Statemanets with error 
+a. 
+```{r}
+BabyNames %>%
+  group_by(year, sex) %>%
+  summarise(BabyNames, total=sum(count))
+```
+
+b. 
+```{r}
+ZipGeography %>%
+  group_by(State) %>%
+  summarise(pop = sum(Population))
+```
+c. 
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+```
+
+d. 
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+```
+
+## 7.5 
+a. 
+```{r}
+VoterData_A <-
+  Minneapolis2013 %>%
+  group_by(First, Second)
+
+View(VoterData_A)
+```
+
+```{r}
+View(Minneapolis2013)
+```
+- There is no difference between the two data frames. 
+b. 
+```{r}
+VoterData_B <-
+  Minneapolis2013 %>%
+  summarise( total = n() )
+
+View(VoterData_B)
+```
+- Compared to Minneapolis2013 data, VoterData_B shows only the total number of cases. 
+
+c. 
+```{r}
+VoterData_C <-
+  Minneapolis2013 %>%
+  group_by(First, Second) %>%
+  summarise( total = n() )
+
+View(VoterData_C)
+```
+- No different between first and second votes between this data frame and the Minneapolis2013. The only apparent tweak is tha this VoterData_C is in Alphabetical order. A case is the first and second vote with the total count of the combination of them.
+
+d. R has no idea what to summarise the total of so it needs a column first.
+
+## 7.6 
+- 1
+```{r}
+data("ZipGeography")
+
+LandPop <- 
+  ZipGeography %>%
+  select(State, Population, LandArea, ZIP) %>%
+  group_by(State) %>% 
+  summarise(POPSUM = sum(Population, na.rm = TRUE), 
+            LandSUM = sum(LandArea, na.rm = TRUE),
+            POPperLandSUM = sum(Population, na.rm = TRUE)/sum(LandArea, na.rm = TRUE))
+```
+
+```{r}
+ggplot(data = LandPop,
+       aes(x = LandSUM, 
+           y = POPSUM)) + 
+  geom_point() + 
+  aes(colour = State)
+```
+
+- 2
+```{r}
+LandPop %>%
+  mUSMap(key = "State", fill = "POPSUM")
+```
+
+- 3
+```{r}
+LandPop %>%
+  mUSMap(key = "State", fill = "POPperLandSUM")
+```
+
+## 7.7 
+a. Sex, Count, meanAge 
+b. Diagnosis, count, meanAge 
+c. sex, diagnosis, count, meanAge 
+d. age, diagnosis, count, meanAge 
+e. age, count, meanAge
+
+## 7.8 
+1. 
+```{r}
+data("ZipDemography")
+
+ggplot(ZipDemography, aes(x=Foreignborn, y=SpeakalanguageotherthanEnglishathome5yearsandover)) + geom_point()
+```
+2. Sort the data frame by the foreigners Zipcodes and then by state, and then calculate the Bachelorsdegreeorhigher by getting the total sum(count) of each state. 
+
