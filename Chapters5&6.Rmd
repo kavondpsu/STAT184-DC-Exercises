@@ -1,0 +1,117 @@
+---
+title: "Chapters 5&6"
+author: "Kavond Jones"
+output: html_notebook
+---
+
+## Assigned Exercises 
+- Chapter 5: 5.1, 5.2, 5.3 
+- Chapter 6: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 6.10
+
+# Required Packages 
+```{r}
+rm(list = ls())
+library(mosaicData)
+library(mosaic)
+library(tidyverse)
+library(dcData)
+```
+
+
+# Chapter 5 
+## 5.1 reconstruct the graph 
+```{r}
+mplot(CPS85)
+```
+```{r}
+CPS85 %>%
+  ggplot(aes(x = sex, y = wage, fill = married )) + 
+  geom_bar(stat = 'identity', position = 'dodge', width = .9) + 
+  facet_wrap(~race, ncol = 3)
+```
+## 5.2 - Remaking graph... 
+```{r}
+ggplot(data = NCHS, aes(x = bmi)) + 
+  geom_density(adjust = 1, alpha = .4, color = NA)+
+  aes( color = sex, fill = sex )+
+  facet_wrap(~ pregnant, ncol = 4)+
+  labs(title = "NCHS Data - Prenancy BMI - Male VS Female ")+
+  theme(legend.position = "right")+
+  theme_bw()
+```
+## 5.3 - Make this graphic of the CPS85 data 
+```{r}
+ggplot(data = CPS85, aes(x = exper, y = wage))+ 
+  geom_point()+
+  aes(colour = married)+
+  facet_wrap(~ sector, ncol = 4)+
+  scale_x_log10()+
+  scale_x_log10()+
+  theme_bw()
+```
+
+
+# Chapter 6 
+## 6.1
+1. "1433B", "1433E", "1433G", "1433Z"
+2. Yes, axes remain constant in all facets. 
+3. Asterisks, Red lines and black vertical lines.
+
+## 6.2 
+1. Y-Axis(Log Enzyme), X-Axis(genes), Fill(Flux), Color(molecule), target(sections of X-axis)
+2. Location of the graph(Gene, Log Enzyme, Target), color(molecule), fill(flux)
+3. Gene and Log Enzyme Concentration
+4. Gene and the target . 
+
+## 6.3 
+1. (1) Vertical Line w/ dot(center, high and low stats of the protein). (2) Stars(protein signif.)
+2. Horizontal(protein), Vertical(low/center/high stats)
+3. Yes, based of the polarity of the proteins. 
+4. Y-Axis with tick marks to judge the low/center/high of the proteins. Label "Apico-basal cell polarity proteins".
+
+## 6.4
+1. The frame is time and the trains departing at that time. 
+2. Solid, dash, and dotted lines. 
+3. Solid Lines(public transport), Dashed lines(transfers), dotted lines(walking). Position with time(time and route taken)
+4. Time of day, type transportation, length(time) of transportation.
+
+## 6.5 
+a. Forecast Probability, State(y-axis) 
+b. State(y-axis), Polling Organization(x-axis)
+c. Blue for democrats, red for republicans 
+d. State(y-axis)
+e. Glyph colors 
+
+## 6.6 
+a. Rectangle w/ Words. Black font 
+b. Rectangle color of logo and name of org.
+c. Polling org's state forecast.
+d. Polling org's forecast by state. Whiter the higher text means higher the likelihood.  
+
+## 6.7 
+a. The states with more dominant forecast are put at both ends while the toss ups lie in the middle.
+b. The certainty of the poll and their projected forecast. 
+c. Roth poll probability for the Demographic Candidate. 
+d. NYT poll probability for the Demographic candidate. 
+e. The polls placement. 
+
+## 6.8
+a. Vertical scale: Name of state. 
+e. Color: color band.
+
+## 6.9 
+```{r}
+Small <-
+  NCHS %>%
+  sample_n(size= 5000)
+```
+
+```{r}
+Small %>%
+  ggplot(aes(x = bmi, y = weight) +
+  geom_point() +
+  aes(colour = smoker) +
+  theme_bw()
+```
+
+
