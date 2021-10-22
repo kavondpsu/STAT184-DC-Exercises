@@ -1,0 +1,88 @@
+---
+title: "Chapter 8 DC Exercises"
+author: "Kavond Jones"
+output: html_notebook
+---
+ 
+ ## Assinged Exercises 
+ - Chapter 8: 8.1, 8.2, 8.3
+ 
+ ## Clean Up and Package Install 
+```{r}
+rm(list = ls())
+
+library(mosaic)
+library(tidyverse)
+library(dcData)
+library(esquisse)
+```
+ 
+## Problem 8.1 
+1. Add layer of glyphs 
+2. Add layer of glyphs
+3. Construct a graphics frame 
+4. Change the scale for the frame
+5. Set an axis label 
+6. Divide the frame into facets 
+7. Add layer of glyphs 
+8. Change the scale of the frame 
+9. Divide the frame into facets 
+
+## Problem 8.2
+```{r}
+ggplot(CPS85)+
+  aes(x=wage, fill=sex)+
+  geom_density(adjust = 1L, alpha = 0.5)+
+  scale_fill_hue()+
+  theme_minimal()+
+  facet_wrap(vars(married))
+
+```
+
+```{r}
+ggplot(CPS85)+
+  aes(x=age, y=wage)+
+  geom_smooth(aes(color=sex))+
+  facet_grid(vars(married))+
+  theme(legend.position = "right")
+```
+
+```{r}
+ggplot(CPS85)+
+  aes(x=age, y=wage)+
+  geom_smooth(aes(color=sex))+
+  facet_wrap(vars(sector))+
+  theme(legend.position = "right")
+```
+
+
+## Problem 8.3 
+
+```{r}
+ggplot(CPS85)+
+  aes(x=age, y=wage)+
+  geom_point()
+```
+
+```{r}
+ggplot(CPS85)+
+  aes(x=age, y=wage, shape=sex)+
+  geom_point()+
+  theme(legend.position = "top")
+```
+
+```{r}
+ggplot(CPS85)+
+  aes(x=age, y=wage, shape=sex)+
+  geom_point()+
+  facet_grid(vars(married))+
+  theme(legend.position = "top")
+```
+
+```{r}
+ggplot(CPS85)+
+  aes(x=age, y=wage, shape=married)+
+  geom_point()+
+  theme(legend.position = "top")
+```
+
