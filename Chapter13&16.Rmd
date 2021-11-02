@@ -1,0 +1,195 @@
+---
+title: "DC Exercises Chapters 13 & 16"
+author: "Kavond Jones"
+output: html_notebook
+---
+
+## Assigned Exercises 
+- Chapter 13: All 
+- Chapter 16: 16.1, 16.2 
+
+```{r}
+# clean up workspace environment
+rm(list = ls())
+
+# all packages used for the assignment
+library(mosaic)
+library(tidyverse)
+library(esquisse)
+library(dcData)
+library(dplyr)
+```
+
+# Chapter 13 
+## Problem 13.1 
+
+- Top 5 for males 
+```{r}
+BabyNames%>%
+  filter(sex == "M")%>%
+  group_by(name)%>%
+  summarise(total = sum(count))%>%
+  filter(rank(desc(total)) <= 5)
+```
+
+- Top for Females 
+```{r}
+BabyNames%>%
+  filter(sex == "F")%>%
+  group_by(name)%>%
+  summarise(total = sum(count))%>%
+  filter(rank(desc(total)) <= 5)
+```
+
+
+## Problem 3.2 
+### 1. 
+
+```{r}
+topHundred<-
+  BabyNames%>%
+  group_by(year)%>%
+  filter(rank(desc(count)) <= 100)%>%
+  summarise(total = sum(count))
+```
+
+```{r}
+belowHundred<-
+  BabyNames%>%
+  group_by(year)%>%
+  filter(rank(desc(count)) > 100)%>%
+  summarise(total = sum(count))
+```
+
+```{r}
+Mixed<-
+  belowHundred%>%
+  inner_join(topHundred, c("year" = "year"))%>%
+  rename(Top_100 = total.y)%>%
+  rename(Below = total.x)
+```
+
+
+```{r}
+Mixed<-
+  Mixed%>%
+  pivot_longer(cols = c(Below, Top_100), names_to = "ranking", values_to = "total")%>%
+  arrange(desc(year))
+Mixed
+```
+
+### 2. 
+```{r}
+Fraction<-
+  Mixed%>%
+  pivot_wider(names_from = ranking, values_from = total)%>%
+  mutate(fractop_100 = Top_100 / Below + Top_100)
+```
+
+### 3. 
+```{r}
+ggplot(Fraction) +
+  aes(x = year, y = fractop_100)+
+  geom_line()+
+  labs(x = "Year", y = "Fraction of babies", title = "Change in baby names for top 100 each year")+
+  theme_minimal()
+```
+
+## 13.3 
+```{r}
+Top50 <-
+BabyNames%>%
+  group_by(year)%>%
+  filter(rank(desc(count)) <= 50)
+```
+
+```{r}
+Unpopular <-
+BabyNames%>%
+  group_by(year)%>%
+  filter(rank(desc(count)) > 1000)
+```
+
+
+# Chapter 16
+```{r}
+#Call lubridate package 
+library(lubridate)
+```
+
+## 16.1 
+
+### 1. "April 30, 1777" Johann Carl Friedrich Gauss
+```{r}
+#use mdy to convert the chr string into a date variable
+Johann <- 
+  mdy("April 30, 1777")
+```
+
+```{r}
+#Setting my birthday
+David <-
+  mdy("March 10 2000")
+```
+
+```{r}
+#The difference in days is by subtracting them 
+David - Johann
+```
+
+### 2. "06-23-1912" Alan Turing’s birthday
+```{r}
+Alan<- 
+  mdy("06-23-1912")
+
+David - Alan
+```
+
+### 3. "3 March 1847" Alexander Graham Bell’s birthday
+```{r}
+Alexander<- 
+  dmy("3 March 1847")
+
+David - Alexander
+```
+
+### 4. "Nov. 11th, 1918 at 11:00 am" Armistice ending World War I on the Western Front.
+```{r}
+Armistice<- 
+  mdy_hm("10-11-1918 11:00")
+David<- 
+  mdy_hm("03-10-2000 12:03")
+
+David - Armistice
+```
+
+### 5. "July 20, 1969" First manned moon landing
+```{r}
+Moon<- 
+  mdy("July 20, 1969")
+David <- 
+  mdy("March 10, 2000")
+
+David - Moon
+```
+
+## Problem 16.2
+
+1. readr::parse_number()
+
+2. readr::parse_number() will turn it into 17 but not .17
+
+3.Neither change nineteen into the actual number 19
+
+4.readr::parse_number()
+
+5.readr::parse_number() 
+
+6.readr::parse_number()
+
+7.neither will work 
+
+8.both
+
+9.readr::parse_number() converts it  
+
