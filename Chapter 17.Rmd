@@ -1,0 +1,89 @@
+---
+title: "Chapter 17 DC Exercises"
+auhtor: "Kavond Jones"
+output: html_notebook
+---
+
+## Assigned Exercises 
+- Chapter 17: 17.1, 17.3, 17.4, 17.5, 17.7
+
+```{r}
+# clean up workspace environment
+rm(list = ls())
+
+# all packages used for the assignment
+library(mosaic)
+library(tidyverse)
+library(dcData)
+library(dplyr)
+```
+
+## 17.1 
+- Boys' names ending in a vowel 
+```{r}
+Boys<-
+  BabyNames%>%
+  filter(sex != "F")%>%
+  group_by(name)%>%
+  summarise(total = sum(count))
+
+Boys
+```
+
+```{r}
+Boys%>%
+  filter(grepl("[aeiou]$", name))%>%
+  arrange(desc(total))%>%
+  head(10)
+```
+
+- Names ending with "joe" 
+```{r}
+BabyNames%>%
+  filter(grepl("joe$", name, ignore.case = FALSE))%>%
+  group_by(name)%>%
+  summarise(total = sum(count))%>%
+  arrange(desc(total))%>%
+  head(10)
+```
+
+## 17.3
+- A type of string that would use this type of styling is a phone number. Additionally a postal code, zip code, or even social security number would be familiar to this general expression.
+
+## 17. 4
+1. The strings that match the pattern will be exactly 2 characters long. 
+2. 61 different strings will match the. 
+3. The pattern represents all the different combinations of two letters to represent the states and territories located in the "US".
+
+## 17.5 
+```{r}
+BibleNames <- 
+  readr::read_csv("https://mdbeckman.github.io/dcSupplement/data/BibleNames.csv")
+```
+
+1. Names that have "bar", "dam", or "lory" in them.
+```{r}
+BibleNames%>%
+  filter(grepl("bar|dam|lory", name, ignore.case = TRUE))
+```
+
+2. Names that end with those words. 
+```{r}
+BibleNames%>%
+  filter(grepl("bar$|dam$|lory$", name, ignore.case = FALSE))
+```
+
+## 17.7 - Data table showing total number of babies for each bible related name. Top 10 names
+```{r}
+BibleRelated<-
+  BabyNames%>%
+  inner_join(BibleNames)%>%
+  group_by(name)%>%
+  summarise(total = sum(count))%>%
+  arrange(desc(total))%>%
+  head(10)
+```
+```{r}
+BibleRelated
+```
+
